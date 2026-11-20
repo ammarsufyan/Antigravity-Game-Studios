@@ -46,7 +46,7 @@ read-only and must not trigger director gates during the analysis phase.
 | **R5 — Structured findings** | Output contains a per-section status table or checklist before the final verdict |
 
 > **Exceptions:**
-> - `design-review`: Has `Write, Edit` in allowed-tools to support an optional "Revise now" path (all writes gated behind user approval) and to write review logs. R1 is satisfied because the reviewed document is never silently modified.
+> - `design-review`: Has `Write, Edit` in skill tool usage to support an optional "Revise now" path (all writes gated behind user approval) and to write review logs. R1 is satisfied because the reviewed document is never silently modified.
 
 ---
 
@@ -178,10 +178,10 @@ gates, the gate mode logic must also be correct.
 ## Agent Categories
 
 Used by `/skill-test category [agent-name]` to evaluate an agent definition in
-`.claude/agents/` against its category's metrics.
+`.agents/agents/` against its category's metrics.
 
 No category fixes a model. Each agent's tier is its own frontmatter `model:`,
-and its spec in `agents/` asserts that alias; see `.claude/docs/model-tiers.md`.
+and its spec in `agents/` asserts that alias; see `.agents/docs/model-tiers.md`.
 
 ### `director`
 

@@ -11,7 +11,7 @@ No gate IDs assigned.
 
 - [ ] `description:` field is present and domain-specific (references Godot shading language / materials / post-processing)
 - [ ] `tools:` list includes Read, Write, Edit, Glob, Grep
-- [ ] Model tier is `sonnet` — frontmatter `model:` reads exactly `sonnet` (tiers: `.claude/docs/model-tiers.md`)
+- [ ] Frontmatter uses Antigravity native subagent fields (`subagent: true`, `mainAgent: false`, native `tools:` list; see `.agents/docs/model-tiers.md`)
 - [ ] Agent definition references `docs/engine-reference/godot/VERSION.md` as the authoritative source for Godot shader API changes
 
 ---

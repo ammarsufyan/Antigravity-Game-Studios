@@ -10,8 +10,8 @@
 ## Static Assertions (Structural)
 
 - [ ] `description:` field is present and domain-specific (references economy, loot tables, progression curves, balance)
-- [ ] `tools:` reads `Read, Glob, Grep, Write, Edit` and `disallowedTools:` names `Bash` — design documents only, no code or analytics tooling
-- [ ] Model tier is `inherit` — frontmatter `model:` reads exactly `inherit` (tiers: `.claude/docs/model-tiers.md`)
+- [ ] `tools:` reads `Read, Glob, Grep, Write, Edit` and `tools:` allowlist names `Bash` — design documents only, no code or analytics tooling
+- [ ] Frontmatter uses Antigravity native subagent fields (`subagent: true`, `mainAgent: false`, native `tools:` list; see `.agents/docs/model-tiers.md`)
 - [ ] Agent definition does not claim authority over live ops scheduling, code, or narrative
 
 ---

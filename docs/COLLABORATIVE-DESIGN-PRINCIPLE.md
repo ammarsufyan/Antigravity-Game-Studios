@@ -137,7 +137,7 @@ Every agent interaction should follow this pattern:
     User: "Yes, write it."  ← ONLY NOW does file get created
 
 11. AGENT WRITES FILE
-    Agent: [Uses Write tool]
+    Agent: [Uses `write_file` tool]
            "Created design/gdd/crafting-system.md. Would you like me to run
             /design-review to validate it against the standard?"
 ```
@@ -334,9 +334,9 @@ Skill: "Writing design/concept.md..."
 
 ---
 
-## 🎛️ Structured Decision UI (AskUserQuestion)
+## 🎛️ Structured Decision UI (ask_question)
 
-Use the `AskUserQuestion` tool to present decisions as a **selectable UI** instead
+Use the `ask_question` tool to present decisions as a **selectable UI** instead
 of plain markdown text. This gives the user a clean interface to pick from options
 (or type "Other" for a custom answer).
 
@@ -349,10 +349,10 @@ pattern:
    detailed pros/cons, theory references, example games, pillar alignment. This is
    where the reasoning lives.
 
-2. **Capture the decision** — Call `AskUserQuestion` with concise option labels
+2. **Capture the decision** — Call `ask_question` with concise option labels
    and short descriptions. The user picks from the UI or types a custom answer.
 
-### When to Use AskUserQuestion
+### When to Use ask_question
 
 ✅ **Use it for:**
 - Every decision point where you'd present 2-4 options
@@ -365,11 +365,11 @@ pattern:
 ❌ **Don't use it for:**
 - Open-ended discovery questions ("What excites you about roguelikes?")
 - Single yes/no confirmations ("May I write to file?")
-- When running as a subagent (spawned through the `Agent` tool), which never gets
+- When running as a subagent (spawned through the `invoke_subagent` tool), which never gets
   the tool: end with the options as a short labeled list and let the caller ask
 
 A question that comes back skipped, dismissed or empty is not an answer. Act on
-nothing; ask again in plain text and wait (`.claude/docs/automation-modes.md`).
+nothing; ask again in plain text and wait (`.agents/docs/automation-modes.md`).
 
 ### Format Guidelines
 
@@ -384,7 +384,7 @@ nothing; ask again in plain text and wait (`.claude/docs/automation-modes.md`).
 After introducing the topic in conversation, batch constrained questions:
 
 ```
-AskUserQuestion:
+ask_question:
   questions:
     - question: "Should crafting recipes be discovered or learned?"
       header: "Discovery"
@@ -411,7 +411,7 @@ AskUserQuestion:
 After writing the full pros/cons analysis in conversation text:
 
 ```
-AskUserQuestion:
+ask_question:
   questions:
     - question: "Which crafting approach fits your vision?"
       header: "Approach"
@@ -429,7 +429,7 @@ AskUserQuestion:
 After presenting the full strategic analysis with pillar alignment:
 
 ```
-AskUserQuestion:
+ask_question:
   questions:
     - question: "How should we handle crafting scope for Alpha?"
       header: "Scope"
@@ -445,12 +445,12 @@ AskUserQuestion:
 ### Team Skill Orchestration
 
 In team skills, subagents return their analysis as text. The **orchestrator**
-(main session) calls `AskUserQuestion` at each decision point between phases:
+(main session) calls `ask_question` at each decision point between phases:
 
 ```
 [game-designer returns 3 combat approaches with analysis]
 
-Orchestrator uses AskUserQuestion:
+Orchestrator uses ask_question:
   question: "Which combat approach should we develop?"
   options: [concise summaries of the 3 approaches]
 
@@ -474,7 +474,7 @@ Every file write must follow:
 2. User: "Yes" or "No, change X first" or "Show me the full draft"
 
 3. IF User says "Yes":
-   Agent: [Uses Write/Edit tool]
+   Agent: [Uses Write/`edit_file` tool]
           "Written to [filepath]. Next steps?"
 
    IF User says "No":

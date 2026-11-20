@@ -6,7 +6,7 @@
 [--spike]` has two routes, chosen by `engine.name` with no question asked.
 
 **The one-shot** (no engine set, `engine.name: web`, or `--path html`): one round
-of questions drawn from the matched genre sheets (`.claude/genres/chipsets.yaml`
+of questions drawn from the matched genre sheets (`.agents/genres/chipsets.yaml`
 rows, `chipsets/<name>.md`), then a one-page brief shown as the card: Look and
 references, First minute, Challenge, Features and the rest of the brief template,
 with the Effort (high), Engine, Guessed and Writes lines under it and Build it /
@@ -27,7 +27,7 @@ the handover card, and goes on to the debrief (Phase 6).
 
 **The engine or paper prototype** (an engine named) is a throwaway concept
 prototype before GDDs are written. It first
-confirms intent with `AskUserQuestion` (Prototype this concept / Skip — concept
+confirms intent with `ask_question` (Prototype this concept / Skip — concept
 already proven / Mid-production spike), forms a falsifiable hypothesis ("If the
 player [does X], they will feel [Y] — we will know this is true if [Z]") and asks
 for the riskiest assumption. It picks an Engine or Paper path (genre table,
@@ -41,7 +41,7 @@ JavaScript, `<!-- -->` in HTML and Markdown), and standards are intentionally
 relaxed.
 
 After a one-question-at-a-time debrief, it fills
-`.claude/docs/templates/prototype-report.md`, asks to write
+`.agents/docs/templates/prototype-report.md`, asks to write
 `prototypes/[concept-name]-concept/REPORT.md` and add its row to
 `prototypes/index.md` (one ask naming both). Verdicts are **PROCEED / PIVOT / KILL**. PIVOT writes a
 `PIVOT-NOTE.md`; KILL runs a five-item soundness check and appends to
@@ -61,7 +61,7 @@ no CD gate and no PROCEED/PIVOT/KILL.
 
 Checked against the SKILL.md by `/skill-test spec` — no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required frontmatter fields: `name`, `description`, argument documentation, slash-command entry, skill tool usage
 - [ ] Has ≥2 phase headings
 - [ ] Contains verdict keywords: PROCEED, PIVOT, KILL, NOT ASSESSED (a prototype nobody has played)
 - [ ] Contains "May I create" / "May I write" language before creating the prototype directory and the report
@@ -92,7 +92,7 @@ Checked against the SKILL.md by `/skill-test spec` — no fixture needed.
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` §
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` §
 Fixture defaults.
 
 ---
@@ -113,7 +113,7 @@ Fixture defaults.
 **Input:** `/prototype grapple-hook traversal`
 
 **Expected behavior:**
-1. `AskUserQuestion` confirms intent; user picks "Prototype this concept"
+1. `ask_question` confirms intent; user picks "Prototype this concept"
 2. Skill states a falsifiable hypothesis in the If / feel / know-if form and asks
    for the riskiest assumption
 3. Path widget pre-states an Engine recommendation (traversal feel is the
@@ -125,7 +125,7 @@ Fixture defaults.
    file it writes starts with `# PROTOTYPE - NOT FOR PRODUCTION` (GDScript
    comments use `#`; a `//` header would not parse)
 6. Debrief questions are asked one at a time; report drafted from
-   `.claude/docs/templates/prototype-report.md`; "May I write this report to
+   `.agents/docs/templates/prototype-report.md`; "May I write this report to
    `prototypes/grapple-hook-concept/REPORT.md` and add its row to
    `prototypes/index.md`?"; a row is appended to `prototypes/index.md`
 7. Note "CD-PLAYTEST skipped — Solo mode."; PROCEED routes to `/design-review`,
@@ -334,7 +334,7 @@ Fixture defaults.
    about eight questions drawn from the matched genre sheets, each with its usual
    answer so "you pick" works, with no question tool; what the typed line already
    answers is not asked, and after the reply there is no second round
-2. The skill matches the genre on `.claude/genres/chipsets.yaml`'s rows and
+2. The skill matches the genre on `.agents/genres/chipsets.yaml`'s rows and
    reads only the matched sheets in `chipsets/`, drawing the questions from them
 3. The card is the whole brief, with Look and references, First minute and
    Challenge filled and the "you pick" answers marked *(provisional)*, then
@@ -343,7 +343,7 @@ Fixture defaults.
    Change something; nothing is written before the answer
 4. After Build it: `design/game-brief.md` is written from the brief template, with
    the typed words and the answers under `## In your words`, every Features item
-   `[ ]` and Keep empty; `bash .claude/scripts/one-shot-new.sh` makes the folder
+   `[ ]` and Keep empty; `bash .agents/scripts/one-shot-new.sh` makes the folder
 5. This session builds the game at its own effort; a builder runs only when the
    person named another effort, and the handover's Effort line says which
 6. Before the handover the small check has run: `evidence/self-check.tsv`,
@@ -376,7 +376,7 @@ Fixture defaults.
 **Input:** `/prototype a lighthouse keeper relighting beacons in a storm`, then Build it
 
 **Expected behavior:**
-1. Before handover the skill runs `bash .claude/scripts/one-shot-check.sh prototypes/<name>
+1. Before handover the skill runs `bash .agents/scripts/one-shot-check.sh prototypes/<name>
    --keys "<inputs>"` (what leaves the title, then a few seconds of the game's own keys) and
    writes no `bot.js`
 2. The `stuck` row fails; the skill fixes the screen in its one fix round and runs the check
@@ -467,7 +467,7 @@ Fixture defaults.
 - [ ] One-shot: asks before committing and tagging `one-shot/<name>`
 - [ ] One-shot: the small check runs before handover with no robot player; a row it could not run is *not assessed* by name, never passed
 - [ ] One-shot: no review agent, art review or cold play run; the person's play is the test
-- [ ] Engine and paper route: confirms intent with `AskUserQuestion` before building (unless `--spike`)
+- [ ] Engine and paper route: confirms intent with `ask_question` before building (unless `--spike`)
 - [ ] Engine and paper route: forms a falsifiable hypothesis and stops if the concept is too vague to form one
 - [ ] Engine and paper route: presents the plan and gets confirmation before building
 - [ ] Asks before creating `prototypes/[concept-name]-concept/` and before writing REPORT.md (with its `prototypes/index.md` row), PIVOT-NOTE.md or GRAVEYARD.md

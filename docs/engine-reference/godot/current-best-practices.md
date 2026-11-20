@@ -173,7 +173,7 @@ This supplements (not replaces) the agent's built-in knowledge.
 
 - **ripgrep has no `gdscript` type**: `*.gd` is registered under `gap` (GAP programming language).
   `rg --type gdscript` is a hard error — the search never executes.
-  Always use `rg --glob "*.gd"` (shell) or `glob: "*.gd"` (Grep tool) to filter GDScript files.
+  Always use `rg --glob "*.gd"` (shell) or `glob: "*.gd"` (`read_file` / workspace search) to filter GDScript files.
 
 ## Command Line — Tests and Parse Check
 
@@ -220,7 +220,7 @@ Observed on Godot 4.6.1 with gdUnit4 6.1.3, and the exits again on 4.7.2 with
 - `--check-only` with `-s <file>` exits 1 on valid code that names an autoload
   (`Identifier not found`), and `--import` / `--quit-after` exit 0 on a parse
   error — neither is a parse check. The framework's parse check is
-  `godot --headless --path . -s res://.claude/scripts/godot-parse-check.gd -- res://<file>.gd …`
+  `godot --headless --path . -s res://.agents/scripts/godot-parse-check.gd -- res://<file>.gd …`
   (exit 1 when a script does not load).
 - On Windows, a quoted full path to the editor (`"C:/Program Files/Godot/…exe"`)
   runs from Git Bash with its stdout and exit code intact.

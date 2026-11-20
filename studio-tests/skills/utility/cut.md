@@ -28,7 +28,7 @@ freeze date is recorded and never enforced. No director gates apply.
 
 Checked against the SKILL.md by `/skill-test spec`, no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required frontmatter fields: `name`, `description`, argument documentation, slash-command entry, skill tool usage
 - [ ] Has ≥2 phase headings
 - [ ] Resolves `automation` and names `collaborative`, `guided` and `autonomous`
 - [ ] Names every write on the Writes line before the pick, and writes nothing before it
@@ -48,7 +48,7 @@ None. `/cut` proposes; the person picks. No gate is invoked.
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` § Fixture defaults.
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` § Fixture defaults.
 
 ---
 
@@ -128,7 +128,7 @@ it on Steam"
 **Input:** `/cut`, then "actually I want to sell it"
 
 **Expected behavior:**
-1. Runs `bash .claude/scripts/config-set.sh project.goal sell`
+1. Runs `bash .agents/scripts/config-set.sh project.goal sell`
 2. Asks the dates at once
 
 **Assertions:**

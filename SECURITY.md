@@ -2,8 +2,7 @@
 
 ## Supported Versions
 
-Security fixes go to the newest 1.3.x release only. Forks and
-older releases are not supported.
+Security fixes apply to the latest release on `main`. Older releases are not supported.
 
 ## Reporting a Vulnerability
 
@@ -11,7 +10,7 @@ older releases are not supported.
 
 Use GitHub's private vulnerability reporting instead:
 
-**[Report a vulnerability →](https://github.com/Donchitos/Claude-Code-Game-Studios/security/advisories/new)**
+**[Report a vulnerability →](https://github.com/ammarsufyan/Antigravity-Game-Studios/security/advisories/new)**
 
 Include as much detail as possible:
 - Description of the vulnerability and what it affects
@@ -26,44 +25,34 @@ Include as much detail as possible:
 
 ## What Is In Scope
 
-CCGS is a **local development tool** — it installs shell hooks and coordinates
-AI agents that run directly on your machine. Security issues are primarily about
-contributed code that executes in users' environments without their awareness.
+Antigravity Game Studios is a **local development template** — it defines agent instructions, skills, rules, and optional helper scripts that run directly in your workspace. Security issues are primarily about contributed files that could execute unintended commands or exfiltrate secrets on a user's machine.
 
 ### High Severity
-- Hooks (`.claude/hooks/*.sh`) that execute malicious or undisclosed shell
-  commands on user machines
-- Skills or agents that exfiltrate environment variables, API keys, or secrets
-- Prompt injection via skill or agent definitions that causes Claude to bypass
-  safety measures or take unauthorized destructive actions
+- Helper scripts (`.agents/scripts/*`) that execute malicious or undisclosed shell commands on user machines
+- Skills, rules, or agents that exfiltrate environment variables, API keys, or secrets
+- Prompt injection via skill, rule, or agent definitions that causes Antigravity to bypass safety measures or take unauthorized destructive actions
 - Contributions that silently alter behavior in ways users cannot audit
 
 ### Medium Severity
 - Skills that make undisclosed outbound network requests
-- Agent definitions that escalate permissions or bypass user confirmation prompts
-- Hook patterns that behave differently across platforms to conceal behavior
-- Skills that write outside their documented scope without an explicit user
-  approval step
+- Agent definitions that escalate tool permissions or bypass user confirmation prompts
+- Scripts that behave differently across OSes to conceal behavior
+- Skills that write outside their documented scope without explicit user approval
 
 ### Out of Scope
-- The behavior of Claude or the Claude Code CLI itself
-  (report to [Anthropic](https://www.anthropic.com/security))
-- Bugs in the user's Claude Code installation or editor extension
+- The behavior of Google Antigravity or its underlying AI models (report to Google Security)
+- Bugs in the user's local Antigravity installation, OS, or game engine
 - Theoretical vulnerabilities with no realistic attack path
 - Issues requiring physical access to the user's machine
 
 ## Security Guidelines for Contributors
 
-When contributing hooks, skills, or agents:
+When contributing skills, agents, rules, or scripts:
 
-- **Hooks must be POSIX-compatible** — use `grep -E`, not `grep -P`; avoid
-  platform-specific syntax that behaves differently across operating systems
-- **No silent network calls** from hooks or skills unless explicitly documented
-  and opt-in by the user
-- **No reading secrets or environment variables** beyond what is minimally
-  required and clearly documented in the skill's header
-- **Skills must not write outside their documented scope** without an explicit
-  user confirmation step
+- **Scripts must be transparent and POSIX-compatible** — use `grep -E`, not `grep -P`; avoid obfuscated shell constructs
+- **No silent network calls** from scripts or skills unless explicitly documented and opt-in
+- **No reading secrets or environment variables** beyond what is minimally required and clearly documented
+- **Skills must not write outside their documented scope** without explicit user confirmation
 
 ## Disclosure Policy
 
@@ -74,7 +63,6 @@ We follow a **90-day coordinated disclosure** timeline:
 3. We confirm and assess severity within 7 days
 4. We develop and test a fix
 5. We notify you before any public disclosure
-6. Public disclosure happens after the fix ships, or at 90 days — whichever
-   comes first
+6. Public disclosure happens after the fix ships, or at 90 days — whichever comes first
 
 We credit reporters in release notes unless you prefer to remain anonymous.

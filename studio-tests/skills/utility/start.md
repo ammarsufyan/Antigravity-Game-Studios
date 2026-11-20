@@ -8,7 +8,7 @@ concept or brief, GDDs, ADRs, other work, and whether `origin` still points at
 the template repo); `source_files: unknown` is reported as an unknown code root,
 never as no code. When the message that started the skill already asks for a game
 in plain words (the person did not type `/start`), it asks and reads nothing and
-starts `/prototype` with the Skill tool: the one step it runs itself, because a
+starts `/prototype` with skill activation: the one step it runs itself, because a
 typed `/start` runs its turn on the skill's own model and the build must run on the
 session's. Phase 2 asks where the user is with four options (A Make me a game
 (playable in minutes), B An idea, or none yet, C Clear concept, D Existing work);
@@ -49,12 +49,12 @@ brief present) skips onboarding. No director gates apply. Verdict: COMPLETE.
 
 Checked against the SKILL.md by `/skill-test spec`, no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required frontmatter fields: `name`, `description`, argument documentation, slash-command entry, skill tool usage
 - [ ] Has ≥2 phase headings
 - [ ] Contains verdict keyword: COMPLETE
 - [ ] States the write rule for every write: the stage, an inferred rigor and a guessed goal only after an explicit yes to the save question that names `project.yaml` and `production/stage.txt`; `modes.automation` from the user's pick, and never when the save was declined
 - [ ] Has a next-step handoff at the end (Phase 7: "Type `[skill]` to begin.")
-- [ ] `allowed-tools` includes `Skill`, used only by Phase 1's game-already-asked-for step
+- [ ] skill tool usage includes `Skill`, used only by Phase 1's game-already-asked-for step
 
 ---
 
@@ -69,7 +69,7 @@ point this skill runs.
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` §
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` §
 Fixture defaults.
 
 ---
@@ -181,7 +181,7 @@ Fixture defaults.
 **Fixture:**
 - Fresh project as in Case 1
 - `.git/config` has `[remote "origin"]` with url
-  `https://github.com/Donchitos/Claude-Code-Game-Studios.git`
+  `https://github.com/Donchitos/Antigravity-Code-Game-Studios.git`
 - The user picks `B) An idea, or none yet` with the hint "a small weekend puzzler", then `Save them`
 
 **Input:** `/start`
@@ -191,7 +191,7 @@ Fixture defaults.
 2. Path B names `/brainstorm a small weekend puzzler` as the immediate step
 3. The card infers rigor `minimal` from "weekend" and "small"
 4. After the Phase 6 path, the skill adds once that `origin` still points at the
-   Claude Code Game Studios template repo, suggests `git remote rename origin template` then
+   Antigravity Game Studios template repo, suggests `git remote rename origin template` then
    `git remote add origin <your repo URL>`, and says to skip `UPGRADING.md`'s own
    `git remote add template` step since that remote now exists
 5. The commands are suggested only; no git command is run
@@ -325,14 +325,14 @@ Fixture defaults.
 2. Route A asks nothing more: no quick questions (they are `/prototype`'s), no stage
    and rigor card, no save question, no automation question
 3. Phase 7 prints only "Type `/prototype` to begin."
-4. `/prototype` is not started, and the Skill tool is not called: a typed `/start`
+4. `/prototype` is not started, and skill activation is not called: a typed `/start`
    runs its turn on this skill's own model, and the build must run on the session's
 
 **Assertions:**
 - [ ] No question follows the Phase 2 answer
 - [ ] Nothing is written: no `project.yaml`, no `production/stage.txt`
 - [ ] The last line is "Type `/prototype` to begin."
-- [ ] No Skill tool call is made; Verdict is COMPLETE
+- [ ] No skill activation call is made; Verdict is COMPLETE
 - [ ] Variant — `engine.name: Godot` is set (and no concept): the first answer reads `A) Make me a game`, without "(playable in minutes)", and says it is a throwaway Godot prototype with a browser sketch as one option
 
 ---
@@ -350,11 +350,11 @@ Fixture defaults.
 1. Phase 1's first step sees a game already asked for, typed in plain words
 2. The skill asks no question and runs no helper
 3. It says in one line that it is taking the person straight to the build
-4. It starts `/prototype` with the Skill tool and no arguments
+4. It starts `/prototype` with skill activation and no arguments
 
 **Assertions:**
 - [ ] No question is asked and `project-state.sh` is not run
-- [ ] The Skill tool starts `/prototype`, with no arguments (the person's message is their words)
+- [ ] The skill activation starts `/prototype`, with no arguments (the person's message is their words)
 - [ ] Nothing is written
 - [ ] No verdict line: `/prototype` takes over
 - [ ] Variant — the person typed `/start` and then "make me a game": this case does not apply; Phase 2 is asked as in Case 9
@@ -445,7 +445,7 @@ Fixture defaults.
 - [ ] Skips the automation question when the key is set
 - [ ] Writes through `set-stage.sh` and `config-set.sh`, never by editing YAML by hand
 - [ ] Prints the existing-work path only in Phase 6, after the rigor is known
-- [ ] Starts the next skill only for a game asked for in plain words (Phase 1, through the Skill tool); every other completed run (not the returning-user skip, which ends at its `/next-step` pointer) ends with "Type `[skill]` to begin." and Verdict COMPLETE
+- [ ] Starts the next skill only for a game asked for in plain words (Phase 1, through skill activation); every other completed run (not the returning-user skip, which ends at its `/next-step` pointer) ends with "Type `[skill]` to begin." and Verdict COMPLETE
 - [ ] Route A, and C's `Build it now` and `Browser sketch first`, write no setting (`project.goal` included: `/prototype`'s card shows that route's goal) and skip the stage, rigor and goal card
 
 ---

@@ -6,7 +6,7 @@ has a cutoff date** and game engines update frequently.
 
 ## Why This Exists
 
-Claude's training data has a knowledge cutoff (May 2025 is the floor; a newer
+The model's training data has a knowledge cutoff (May 2025 is the floor; a newer
 model may know more). Game engines
 like Godot, Unity, and Unreal, and the web toolchain (Vite, TypeScript and the
 game libraries), ship updates that introduce breaking API changes,

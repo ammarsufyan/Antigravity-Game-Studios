@@ -11,7 +11,7 @@ No gate IDs assigned.
 
 - [ ] `description:` field is present and domain-specific (references editor tools / pipeline / debug utilities)
 - [ ] `tools:` list includes Read, Write, Edit, Bash, Glob, Grep
-- [ ] Model tier is `inherit` — frontmatter `model:` reads exactly `inherit` (tiers: `.claude/docs/model-tiers.md`)
+- [ ] Frontmatter uses Antigravity native subagent fields (`subagent: true`, `mainAgent: false`, native `tools:` list; see `.agents/docs/model-tiers.md`)
 - [ ] Agent definition does not claim authority over game source code or engine internals
 
 ---

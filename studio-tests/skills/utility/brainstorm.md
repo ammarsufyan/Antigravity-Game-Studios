@@ -29,7 +29,7 @@ Both flows end with `Verdict: **COMPLETE**`.
 
 Checked against the SKILL.md by `/skill-test spec` — no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required frontmatter fields: `name`, `description`, argument documentation, slash-command entry, skill tool usage
 - [ ] Has ≥2 phase headings
 - [ ] Contains verdict keyword: COMPLETE (in both the Lean Brief flow and the full flow)
 - [ ] Contains "May I write" language for both `design/game-brief.md` and `design/gdd/game-concept.md`
@@ -59,7 +59,7 @@ Full flow only (`workflow: standard` or `full`):
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` §
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` §
 Fixture defaults.
 
 ---
@@ -263,7 +263,7 @@ Fixture defaults.
 - [ ] In your words is the user's text word for word, never a summary
 - [ ] "no combat" appears under `## Avoid`
 - [ ] The brief has the template's Question, Hooks and Kill condition lines
-- [ ] The only next step is `/prototype`, and the skill does not start it (no Skill tool call): a typed `/brainstorm` runs on its own model
+- [ ] The only next step is `/prototype`, and the skill does not start it (no skill activation call): a typed `/brainstorm` runs on its own model
 - [ ] Variant — `engine.name: web`: the same single `/prototype` step
 
 ---

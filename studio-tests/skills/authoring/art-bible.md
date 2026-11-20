@@ -8,7 +8,7 @@ sections: 1 Visual Identity Statement, 2 Mood & Atmosphere, 3 Shape Language,
 7 UI/HUD Visual Direction, 8 Asset Standards, 9 Reference Direction.
 
 It first reads `design/gdd/game-concept.md` (or `design/game-brief.md` at
-`rigor: minimal`) and stops if neither exists. A two-tab `AskUserQuestion`
+`rigor: minimal`) and stops if neither exists. A two-tab `ask_question`
 frames the session: **Scope** (with the option the resolved `workflow` tier
 requires marked Recommended) and **References** (free text). Authoring is
 progressive: sections 1–4 and 9 are drafted by a spawned `art-director`
@@ -29,7 +29,7 @@ authors only Empty or Placeholder sections.
 
 After the scoped sections are written, Phase 5 runs the AD-ART-BIBLE sign-off in
 `full` review mode only and records the verdict in the art bible's status
-header. Phase 6 closes with an `AskUserQuestion` of next steps filtered by
+header. Phase 6 closes with an `ask_question` of next steps filtered by
 project state.
 
 ---
@@ -38,7 +38,7 @@ project state.
 
 Checked against the SKILL.md by `/skill-test spec` — no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required frontmatter fields: `name`, `description`, argument documentation, slash-command entry, skill tool usage
 - [ ] Has ≥2 phase headings
 - [ ] Contains gate verdict keywords recorded in the status header: `APPROVED`, `CONCERNS`
 - [ ] Contains ask-before-write language: "May I create `design/art/art-bible.md` from the art bible template?" before the file exists, and a per-section approval option that names the write (`Lock this in and write it to design/art/art-bible.md`)
@@ -54,7 +54,7 @@ Checked against the SKILL.md by `/skill-test spec` — no fixture needed.
 | AD-ART-BIBLE | Phase 5 — after all sections in the Phase 1 scope are written | full only; lean notes "AD-ART-BIBLE skipped — Lean mode.", solo notes "AD-ART-BIBLE skipped — Solo mode." |
 
 The skill runs the gate itself, reading its definition
-(`.claude/docs/director-gates/ad-art-bible.md`) as a checklist, against the bible
+(`.agents/docs/director-gates/ad-art-bible.md`) as a checklist, against the bible
 on disk, with the four inputs that definition lists: the art bible path, the game pillars and core
 fantasy, the platform and performance constraints (`platform.*` and
 `performance.*`), and the visual identity anchor. From a one-page brief it uses
@@ -69,7 +69,7 @@ Drafting under the lenses is not a gate: it runs in every review mode.
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` §
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` §
 Fixture defaults.
 
 ---
@@ -88,21 +88,21 @@ Fixture defaults.
 
 **Expected behavior:**
 1. Phase 0 reads the game concept and extracts title, pitch, pillars, the Visual Identity Anchor and platform
-2. Phase 1 asks one `AskUserQuestion` with a Scope tab (Full bible marked Recommended, because `full` requires all 9 sections) and a free-text References tab, and notes the anchor it found
-3. Section 1: `art-director` drafts it; the user picks from `[A] Lock this in and write it to design/art/art-bible.md` / `[B] Revise the one-liner` / `[C] Revise a supporting principle` / `[D] Describe my own direction`; after "May I create `design/art/art-bible.md` from the art bible template?", the file is created from `.claude/docs/templates/art-bible.md` and the approved section replaces Section 1's `[To be designed]` line
+2. Phase 1 asks one `ask_question` with a Scope tab (Full bible marked Recommended, because `full` requires all 9 sections) and a free-text References tab, and notes the anchor it found
+3. Section 1: `art-director` drafts it; the user picks from `[A] Lock this in and write it to design/art/art-bible.md` / `[B] Revise the one-liner` / `[C] Revise a supporting principle` / `[D] Describe my own direction`; after "May I create `design/art/art-bible.md` from the art bible template?", the file is created from `.agents/docs/templates/art-bible.md` and the approved section replaces Section 1's `[To be designed]` line
 4. Sections 2–4: one `art-director` call returns three labelled blocks; Section 2 is presented, approved with the option that names the write, and written before Section 3 is presented, and so on
 5. Sections 5–6: drafted together; presented, approved and written one at a time
 6. Section 7: an art view and a UX view (UX lens) as separate blocks; Section 8: an art view and a technical view (technical-art lens) as separate blocks; Section 9: `art-director`
 7. Phase 5: the skill runs AD-ART-BIBLE after the ninth section is written, with the art bible path, the pillars and core fantasy, the platform and performance constraints, and the visual identity anchor
 8. The status header records `> **Art Director Sign-Off (AD-ART-BIBLE)**: APPROVED [date]`
-9. Phase 6: `AskUserQuestion` of next steps that always includes `/create-architecture` and "Stop here"
+9. Phase 6: `ask_question` of next steps that always includes `/create-architecture` and "Stop here"
 
 **Assertions:**
 - [ ] The Scope tab marks "Full bible — all 9 sections" as Recommended and says why
 - [ ] Sections 1–4 and 9 come from a spawned `art-director`; sections 5–8 are drafted under their lenses with no spawn
 - [ ] Sections 2–4 come from a single `art-director` call but are presented, approved and written one section at a time
 - [ ] No section is written before an approval whose option names the write (`Lock this in and write it to design/art/art-bible.md`), and each is written immediately after it
-- [ ] The file is created from `.claude/docs/templates/art-bible.md` only after "May I create `design/art/art-bible.md` from the art bible template?" — an ask that names the file — so its nine `## N. Name` headings are the ones retrofit mode (Case 4) reads
+- [ ] The file is created from `.agents/docs/templates/art-bible.md` only after "May I create `design/art/art-bible.md` from the art bible template?" — an ask that names the file — so its nine `## N. Name` headings are the ones retrofit mode (Case 4) reads
 - [ ] AD-ART-BIBLE runs only after all nine sections are written, its verdict token printed first on its own line
 - [ ] AD-ART-BIBLE uses all four context items: the art bible path, the pillars and core fantasy, the platform and performance constraints, and the visual identity anchor
 - [ ] The APPROVE verdict is recorded in the art bible's status header line
@@ -121,7 +121,7 @@ Fixture defaults.
 **Input:** `/art-bible` (reaching Phase 5)
 
 **Expected behavior:**
-1. (a) The CONCERNS are surfaced to the user via `AskUserQuestion` with the standard options from `director-gates.md`: `Revise flagged items` / `Accept and proceed` / `Discuss further`
+1. (a) The CONCERNS are surfaced to the user via `ask_question` with the standard options from `director-gates.md`: `Revise flagged items` / `Accept and proceed` / `Discuss further`
 2. (a) If "Accept and proceed": the status header records `CONCERNS (accepted) [date]`
 3. (a) If "Revise flagged items": `art-director` re-drafts Section 4; it is shown to the user and approved with the option that names the write before it is written; the status header then records `REVISED [date]`
 4. (b) The missing input is named, and the status header records `NOT ASSESSED [date] — [missing input]`, never `APPROVED`
@@ -226,7 +226,7 @@ Fixture defaults.
 - [ ] Only the sections in the chosen scope are authored, and the close names every section left out and why
 - [ ] Conflicts between the art view and the UX or technical view are surfaced to the user, never silently resolved
 - [ ] AD-ART-BIBLE runs only in full mode, after the scoped sections are written; lean and solo print a skip note naming the gate and mode
-- [ ] Ends with an `AskUserQuestion` of next steps filtered by project state — at `standard`/`full` always including `/create-architecture` and "Stop here"; at `workflow: minimal`, `/create-stories` or `/dev-story [next story]` plus Stop here
+- [ ] Ends with an `ask_question` of next steps filtered by project state — at `standard`/`full` always including `/create-architecture` and "Stop here"; at `workflow: minimal`, `/create-stories` or `/dev-story [next story]` plus Stop here
 
 ---
 

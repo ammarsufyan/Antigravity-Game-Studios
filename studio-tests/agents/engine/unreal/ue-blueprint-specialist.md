@@ -10,8 +10,8 @@
 ## Static Assertions (Structural)
 
 - [ ] `description:` field is present and domain-specific (references Blueprint architecture and optimization)
-- [ ] `tools:` list matches the agent's role (Read/Write/Edit for Blueprint-facing files; no server or deployment tools, and Bash withheld via `disallowedTools:`)
-- [ ] Model tier is `sonnet` — frontmatter `model:` reads exactly `sonnet` (tiers: `.claude/docs/model-tiers.md`)
+- [ ] `tools:` list matches the agent's role (`read_file`/`write_file`/`edit_file` for Blueprint-facing files; no server or deployment tools, and Bash withheld via `tools:` allowlist)
+- [ ] Frontmatter uses Antigravity native subagent fields (`subagent: true`, `mainAgent: false`, native `tools:` list; see `.agents/docs/model-tiers.md`)
 - [ ] Agent definition does not claim authority over C++ implementation decisions
 
 ---
